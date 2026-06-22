@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pansion Dovodja — Vodice · Obiteljski smještaj i domaća konoba</title>
+<meta name="description" content="Pansion Dovodja u Vodicama — obiteljski vođen smještaj uz domaću konobu. Svijetle sobe i apartmani, jadranske terase, roštilj i domaća kuhinja. Dobrodošli u obitelj." />
+<meta property="og:title" content="Pansion Dovodja — Vodice" />
+<meta property="og:description" content="Obiteljski smještaj i domaća konoba u srcu Vodica. Dobrodošli u obitelj Dovodja." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<style>
+:root{
+  --linen:#F5F3EE;
+  --linen-2:#EFEBE2;
+  --ink:#2B2722;
+  --ink-soft:#5A534A;
+  --terracotta:#C0603C;
+  --terracotta-dk:#A24D2E;
+  --line:#DED7CA;
+  --white:#FBFAF7;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"DM Sans",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:auto}
+body{
+  font-family:var(--sans);
+  background:var(--linen);
+  color:var(--ink);
+  font-weight:400;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spacing:-.01em}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+.eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--terracotta);font-weight:500}
+
+/* preloader */
+#pre{position:fixed;inset:0;background:var(--linen);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;transition:opacity .8s ease}
+#pre .pn{font-family:var(--serif);font-size:clamp(34px,7vw,64px);color:var(--ink);opacity:0;transform:translateY(14px)}
+#pre .ps{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--terracotta);opacity:0}
+#pre.done{opacity:0;pointer-events:none}
+
+/* cursor dot */
+.cursor{position:fixed;top:0;left:0;width:8px;height:8px;border-radius:50%;background:var(--terracotta);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s,opacity .3s;mix-blend-mode:multiply}
+.cursor.big{width:46px;height:46px;background:rgba(192,96,60,.18)}
+@media (hover:none){.cursor{display:none}}
+
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:900;padding:22px 0;transition:background .4s,padding .4s,box-shadow .4s}
+header.scrolled{background:rgba(245,243,238,.92);backdrop-filter:blur(10px);padding:14px 0;box-shadow:0 1px 0 var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:var(--serif);font-size:24px;letter-spacing:.01em;color:var(--white)}
+header.scrolled .brand{color:var(--ink)}
+.navlinks{display:flex;gap:34px;align-items:center}
+.navlinks a{font-size:13px;letter-spacing:.06em;color:rgba(255,255,255,.9);transition:color .3s}
+header.scrolled .navlinks a{color:var(--ink-soft)}
+.navlinks a:hover{color:var(--terracotta)}
+.cta-row{display:flex;gap:12px;align-items:center}
+.btn{font-family:var(--sans);font-size:13px;letter-spacing:.04em;padding:11px 22px;border-radius:2px;border:1px solid transparent;cursor:pointer;transition:.3s;display:inline-block}
+.btn-solid{background:var(--terracotta);color:#fff}
+.btn-solid:hover{background:var(--terracotta-dk)}
+.btn-ghost{border-color:rgba(255,255,255,.5);color:#fff}
+header.scrolled .btn-ghost{border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--terracotta);color:var(--terracotta)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:24px;height:1.5px;background:#fff}
+header.scrolled .burger span{background:var(--ink)}
+
+/* hero */
+.hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:flex-end;overflow:hidden}
+.hero-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1602002418082-a4443e081dd1?auto=format&fit=crop&w=2000&q=80') center/cover;will-change:transform}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,25,20,.42) 0%,rgba(30,25,20,.05) 35%,rgba(30,25,20,.55) 100%)}
+.hero-inner{position:relative;z-index:3;padding-bottom:8vh;color:#fff}
+.hero h1{font-size:clamp(46px,8.5vw,104px);color:#fff;font-weight:500;max-width:14ch}
+.hero .lead{font-size:clamp(16px,1.7vw,20px);max-width:46ch;margin-top:22px;color:rgba(255,255,255,.92);font-weight:300}
+.hero .eyebrow{color:#fff;opacity:.92;margin-bottom:18px}
+.scroll-ind{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;color:#fff;font-size:11px;letter-spacing:.3em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:.85}
+.scroll-ind .ln{width:1px;height:46px;background:rgba(255,255,255,.6);animation:drop 2s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* sections */
+section{position:relative}
+.pad{padding:110px 0}
+.reveal{opacity:0;transform:translateY(30px)}
+.clip{clip-path:inset(0 0 100% 0)}
+
+/* manifest */
+.manifest{text-align:center;max-width:880px;margin:0 auto}
+.manifest h2{font-size:clamp(30px,4.4vw,52px);font-weight:400;line-height:1.16}
+.manifest h2 em{font-style:italic;color:var(--terracotta)}
+.manifest p{margin-top:26px;color:var(--ink-soft);font-size:17px;max-width:60ch;margin-left:auto;margin-right:auto}
+
+/* split intro */
+.split{display:grid;grid-template-columns:1.05fr 1fr;gap:70px;align-items:center}
+.split .imgwrap{overflow:hidden;border-radius:2px}
+.split img{width:100%;height:560px;object-fit:cover;will-change:transform}
+.split h2{font-size:clamp(28px,3.6vw,44px);font-weight:400}
+.split .eyebrow{margin-bottom:16px}
+.split p{margin-top:18px;color:var(--ink-soft)}
+.split .sig{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--ink);margin-top:28px}
+
+/* rooms */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:48px}
+.sec-head h2{font-size:clamp(30px,4.4vw,50px);font-weight:400}
+.sec-head .eyebrow{margin-bottom:14px}
+.sec-head p{color:var(--ink-soft);max-width:40ch}
+.swiper{overflow:visible}
+.roomcard{background:var(--white);border:1px solid var(--line);border-radius:2px;overflow:hidden;height:100%;display:flex;flex-direction:column}
+.roomcard .ph{height:280px;overflow:hidden}
+.roomcard .ph img{width:100%;height:100%;object-fit:cover;transition:transform .9s ease}
+.roomcard:hover .ph img{transform:scale(1.06)}
+.roomcard .body{padding:26px 26px 30px}
+.roomcard h3{font-size:27px;font-weight:500}
+.roomcard .cap{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--terracotta);margin:8px 0 14px}
+.roomcard p{font-size:14.5px;color:var(--ink-soft)}
+.amen{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.amen span{font-size:11.5px;letter-spacing:.04em;color:var(--ink-soft);border:1px solid var(--line);padding:5px 11px;border-radius:40px;background:var(--linen)}
+.swiper-nav{display:flex;gap:12px;margin-top:36px}
+.sbtn{width:50px;height:50px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.3s;background:transparent;font-size:18px;color:var(--ink)}
+.sbtn:hover{border-color:var(--terracotta);color:var(--terracotta)}
+
+/* konoba band */
+.konoba{background:var(--ink);color:var(--linen)}
+.konoba .split h2{color:var(--white)}
+.konoba .split p{color:rgba(245,243,238,.7)}
+.konoba .eyebrow{color:#E29A78}
+.konoba .imgwrap{border-radius:2px;overflow:hidden}
+.dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);margin-top:50px;border:1px solid rgba(255,255,255,.08)}
+.dish{background:var(--ink);padding:30px 26px}
+.dish h4{font-family:var(--serif);font-size:23px;color:var(--white);font-weight:500}
+.dish p{font-size:13.5px;color:rgba(245,243,238,.62);margin-top:8px}
+
+/* todo */
+.todo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:46px}
+.todo{position:relative;height:320px;overflow:hidden;border-radius:2px}
+.todo img{width:100%;height:100%;object-fit:cover;transition:transform 1s ease}
+.todo:hover img{transform:scale(1.05)}
+.todo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(20,16,12,.72))}
+.todo .cap{position:absolute;left:26px;bottom:24px;z-index:2;color:#fff}
+.todo .cap h4{font-size:25px;color:#fff;font-weight:500}
+.todo .cap p{font-size:13px;color:rgba(255,255,255,.82);margin-top:4px}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px;margin-top:46px}
+.gal a{overflow:hidden;border-radius:2px}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .9s}
+.gal a:hover img{transform:scale(1.07)}
+.gal .tall{grid-row:span 2}
+.gal .wide{grid-column:span 2}
+
+/* location */
+.loc{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.loc .mapwrap{border-radius:2px;overflow:hidden;border:1px solid var(--line);height:420px}
+.loc iframe{width:100%;height:100%;border:0;filter:saturate(.9)}
+.loc h2{font-size:clamp(28px,3.6vw,44px);font-weight:400}
+.loc .info{margin-top:26px;display:grid;gap:18px}
+.loc .row{display:flex;gap:14px;align-items:flex-start}
+.loc .row .k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--terracotta);min-width:92px;padding-top:3px}
+.loc .row .v{color:var(--ink-soft)}
+
+/* footer */
+footer{background:var(--linen-2);border-top:1px solid var(--line);padding:70px 0 36px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.foot .brand-f{font-family:var(--serif);font-size:30px;color:var(--ink)}
+.foot p{color:var(--ink-soft);font-size:14px;margin-top:14px;max-width:34ch}
+.foot h5{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:16px}
+.foot a{display:block;color:var(--ink-soft);font-size:14px;margin-bottom:10px;transition:color .3s}
+.foot a:hover{color:var(--terracotta)}
+.legal{margin-top:54px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--ink-soft)}
+
+/* enquiry panel */
+.panel-bg{position:fixed;inset:0;background:rgba(30,25,20,.5);z-index:1000;opacity:0;pointer-events:none;transition:opacity .4s}
+.panel-bg.open{opacity:1;pointer-events:auto}
+.panel{position:fixed;top:0;right:0;height:100%;width:min(460px,90vw);background:var(--linen);z-index:1001;transform:translateX(100%);transition:transform .5s cubic-bezier(.6,.05,.05,1);padding:48px 40px;overflow-y:auto}
+.panel.open{transform:translateX(0)}
+.panel h3{font-size:34px;font-weight:500}
+.panel .x{position:absolute;top:24px;right:28px;font-size:26px;cursor:pointer;color:var(--ink-soft);background:none;border:none}
+.panel p.sub{color:var(--ink-soft);margin-top:10px;font-size:14.5px}
+.field{margin-top:22px}
+.field label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:8px}
+.field input,.field textarea,.field select{width:100%;padding:13px 15px;border:1px solid var(--line);background:var(--white);font-family:var(--sans);font-size:14px;border-radius:2px;color:var(--ink)}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--terracotta)}
+.panel .btn-solid{width:100%;text-align:center;margin-top:28px;border:none;font-size:14px;padding:15px}
+
+/* mobile booking bar */
+.mbar{position:fixed;bottom:0;left:0;right:0;z-index:850;background:var(--white);border-top:1px solid var(--line);display:none;padding:10px 14px;gap:10px;box-shadow:0 -4px 20px rgba(0,0,0,.06)}
+.mbar .btn{flex:1;text-align:center}
+
+@media(max-width:980px){
+  .split,.loc{grid-template-columns:1fr;gap:36px}
+  .split img{height:380px}
+  .dishes{grid-template-columns:1fr}
+  .todo-grid{grid-template-columns:1fr}
+  .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+  .foot{grid-template-columns:1fr 1fr}
+}
+@media(max-width:720px){
+  .navlinks{display:none}
+  .cta-row .btn-ghost{display:none}
+  .burger{display:flex}
+  .mbar{display:flex}
+  .pad{padding:72px 0}
+  body{padding-bottom:64px}
+  .gal{grid-template-columns:1fr 1fr}
+  .foot{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+  .clip{clip-path:none!important}
+  .hero-img{transform:none!important}
+}
+</style>
+</head>
+<body>
+<div id="pre"><div class="pn">Dovodja</div><div class="ps">Vodice · od obitelji</div></div>
+<div class="cursor"></div>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#" class="brand">Dovodja</a>
+    <nav class="navlinks">
+      <a href="#smjestaj">Smještaj</a>
+      <a href="#obitelj">Obitelj</a>
+      <a href="#konoba">Konoba</a>
+      <a href="#vodice">Vodice</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="cta-row">
+      <a class="btn btn-ghost" href="#" onclick="openPanel(event)">Upit</a>
+      <a class="btn btn-solid" href="#smjestaj">Rezerviraj</a>
+      <div class="burger" onclick="document.querySelector('.navlinks').classList.toggle('mob');this.classList.toggle('on')"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img" id="heroImg"></div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow">Obiteljski pansion · Vodice, Dalmacija</div>
+    <h1>Dobrodošli u obitelj Dovodja.</h1>
+    <p class="lead">Svijetle sobe i apartmani uz domaću konobu, na nekoliko koraka od vodičke rive, mora i palmi. Mjesto gdje vas dočekuju kao svoje.</p>
+  </div>
+  <div class="scroll-ind"><span>Istražite</span><span class="ln"></span></div>
+</section>
+
+<!-- MANIFEST -->
+<section class="pad">
+  <div class="wrap manifest">
+    <div class="eyebrow reveal">Naša priča</div>
+    <h2 class="reveal">Prezime na vratima, <em>toplina</em> za stolom.<br/>Kod nas niste gost — vi ste dio obitelji.</h2>
+    <p class="reveal">Pansion Dovodja vodi naša obitelj već godinama, s istom idejom: da svaki gost koji prekorači prag osjeti mir doma. Sobe mirišu na čisto i sunce, terasa gleda na mediteransko zelenilo, a iz konobe se širi miris roštilja i domaće kuhinje. Vodice su pred vama — more, marina i bezbrižni ljetni dani.</p>
+  </div>
+</section>
+
+<!-- SPLIT INTRO -->
+<section class="pad" style="padding-top:0">
+  <div class="wrap split">
+    <div class="imgwrap reveal clip"><img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1400&q=80" alt="Svijetla soba pansiona"/></div>
+    <div>
+      <div class="eyebrow reveal">Smještaj uz dušu</div>
+      <h2 class="reveal">Soba s pogledom,<br/>doručak s osmijehom.</h2>
+      <p class="reveal">Naše sobe i apartmani uređeni su jednostavno i toplo — prirodni materijali, mnogo svjetla i svaki detalj koji ljetovanje čini lakim. Klima, brzi Wi-Fi, vlastita kupaonica i terasa na kojoj ćete sa šalicom kave dočekati još jedno vedro vodičko jutro.</p>
+      <p class="reveal">Nudimo noćenje s doručkom i polupansion, idealno za obitelji i goste koji nam dolaze iz Njemačke, Češke i Slovenije — mnogi se vraćaju iz godine u godinu.</p>
+      <div class="sig reveal">— obitelj Dovodja</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROOMS SWIPER -->
+<section class="pad" id="smjestaj" style="background:var(--linen-2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow reveal">Sobe i apartmani</div>
+        <h2 class="reveal">Svaki kutak ima ime.</h2>
+      </div>
+      <p class="reveal">Odaberite svoj kutak vodičkog ljeta. Sve cijene i dostupnost potvrđujemo osobno, brzim odgovorom na upit.</p>
+    </div>
+    <div class="swiper" id="roomSwiper">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide"><div class="roomcard">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=900&q=80" alt="Soba Maslina"/></div>
+          <div class="body">
+            <h3>Soba Maslina</h3>
+            <div class="cap">2 osobe · 18 m² · 1. kat</div>
+            <p>Mirna dvokrevetna soba u tonovima masline, s francuskim ležajem i pogledom na vrt. Savršena za par.</p>
+            <div class="amen"><span>Klima</span><span>Wi-Fi</span><span>Kupaonica</span><span>TV</span><span>Doručak</span></div>
+          </div>
+        </div></div>
+
+        <div class="swiper-slide"><div class="roomcard">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80" alt="Soba Lavanda"/></div>
+          <div class="body">
+            <h3>Soba Lavanda</h3>
+            <div class="cap">2–3 osobe · 22 m² · balkon</div>
+            <p>Svijetla soba s dodatnim ležajem i balkonom okrenutim suncu. Miris lavande i jutarnja kava na svježem zraku.</p>
+            <div class="amen"><span>Balkon</span><span>Klima</span><span>Wi-Fi</span><span>Mini-bar</span><span>Kupaonica</span></div>
+          </div>
+        </div></div>
+
+        <div class="swiper-slide"><div class="roomcard">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80" alt="Apartman Marina"/></div>
+          <div class="body">
+            <h3>Apartman Marina</h3>
+            <div class="cap">4 osobe · 42 m² · kuhinja</div>
+            <p>Prostrani obiteljski apartman s odvojenom spavaćom sobom, dnevnim boravkom i potpuno opremljenom kuhinjom.</p>
+            <div class="amen"><span>Kuhinja</span><span>2 sobe</span><span>Klima</span><span>Wi-Fi</span><span>Terasa</span><span>Perilica</span></div>
+          </div>
+        </div></div>
+
+        <div class="swiper-slide"><div class="roomcard">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=900&q=80" alt="Apartman Palma"/></div>
+          <div class="body">
+            <h3>Apartman Palma</h3>
+            <div class="cap">2–4 osobe · 36 m² · terasa</div>
+            <p>Apartman u prizemlju s velikom natkrivenom terasom među palmama — idealan za duže obiteljske odmore.</p>
+            <div class="amen"><span>Velika terasa</span><span>Kuhinja</span><span>Klima</span><span>Wi-Fi</span><span>Parking</span></div>
+          </div>
+        </div></div>
+
+        <div class="swiper-slide"><div class="roomcard">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80" alt="Soba Mandula"/></div>
+          <div class="body">
+            <h3>Soba Mandula</h3>
+            <div class="cap">2 osobe · 20 m² · prizemlje</div>
+            <p>Komforna soba uz vrt, lak pristup bez stepenica, savršena za mirniji odmor i ljubitelje hlada bademovog stabla.</p>
+            <div class="amen"><span>Prizemlje</span><span>Klima</span><span>Wi-Fi</span><span>Kupaonica</span><span>Vrt</span></div>
+          </div>
+        </div></div>
+
+      </div>
+    </div>
+    <div class="swiper-nav">
+      <button class="sbtn" id="rPrev" aria-label="Prethodna">&larr;</button>
+      <button class="sbtn" id="rNext" aria-label="Sljedeća">&rarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- OBITELJ -->
+<section class="pad" id="obitelj">
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow reveal">Obitelj Dovodja · domaćini</div>
+      <h2 class="reveal">Ljudi iza pansiona.</h2>
+      <p class="reveal">Iza imena Dovodja stoji prava dalmatinska obitelj — generacije koje su odrasle uz more i naučile da je gostoprimstvo najljepša vještina. Dočekat ćemo vas savjetom gdje na najbolju plažu, koji konop voziti brodom i kada je riba najsvježija.</p>
+      <p class="reveal">Volimo upoznati svoje goste, podijeliti čašu domaćeg vina i pomoći oko svega — od izleta po Kornatima do rezervacije stola u konobi. Vaš odmor je naša obiteljska čast.</p>
+      <div class="sig reveal">Vidimo se na terasi.</div>
+    </div>
+    <div class="imgwrap reveal clip"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1400&q=80" alt="Obitelj domaćini"/></div>
+  </div>
+</section>
+
+<!-- KONOBA -->
+<section class="pad konoba" id="konoba">
+  <div class="wrap">
+    <div class="split">
+      <div class="imgwrap reveal clip"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1400&q=80" alt="Roštilj i riba u konobi"/></div>
+      <div>
+        <div class="eyebrow reveal">Domaća konoba Dovodja</div>
+        <h2 class="reveal">Sa žara, iz mora,<br/>od srca.</h2>
+        <p class="reveal">U našoj obiteljskoj konobi kuhamo onako kako se kuhalo doma — svježa riba s gradela, janjetina i meso s roštilja, domaće maslinovo ulje i povrće iz vrta. Sve uz čašu vodičkog vina i pogled na terasu.</p>
+        <p class="reveal">Gosti pansiona uz polupansion večeraju upravo ovdje, a vrata su otvorena i ostalima koji žele osjetiti pravi okus Dalmacije.</p>
+      </div>
+    </div>
+    <div class="dishes">
+      <div class="dish reveal"><h4>Riba s gradela</h4><p>Svježi ulov dana — orada, brancin, škarpina — pečen na žaru s maslinovim uljem i blitvom.</p></div>
+      <div class="dish reveal"><h4>Meso s roštilja</h4><p>Domaći ćevapi, janjetina i biftek sa žara, uz domaći kruh i pečeni krumpir.</p></div>
+      <div class="dish reveal"><h4>Domaće marende</h4><p>Pašticada, crni rižot i sezonska jela po receptima naše obitelji.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VODICE TODO -->
+<section class="pad" id="vodice">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow reveal">Vodice i okolica</div>
+        <h2 class="reveal">Dani puni sunca i mora.</h2>
+      </div>
+      <p class="reveal">Sve najbolje od dalmatinskog ljeta na dohvat ruke — od šetnje rivom do bijelih hridi Kornata.</p>
+    </div>
+    <div class="todo-grid">
+      <div class="todo reveal"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1200&q=80" alt="Plaže Vodica"/><div class="cap"><h4>Plaže i kupanje</h4><p>Šljunčane i stjenovite plaže s kristalnim morem, na nekoliko minuta hoda.</p></div></div>
+      <div class="todo reveal"><img src="https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?auto=format&fit=crop&w=1200&q=80" alt="Marina i riva Vodice"/><div class="cap"><h4>Riva i marina</h4><p>Večernja šetnja uz palme, jedrilice i kavu na suncu zalaska.</p></div></div>
+      <div class="todo reveal"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80" alt="Kornati izlet brodom"/><div class="cap"><h4>Izlet na Kornate</h4><p>Cjelodnevni izleti brodom kroz nacionalni park i skrivene uvale.</p></div></div>
+      <div class="todo reveal"><img src="https://images.unsplash.com/photo-1597466599360-3b9775841aec?auto=format&fit=crop&w=1200&q=80" alt="Stari grad Šibenik"/><div class="cap"><h4>Šibenik i tvrđave</h4><p>UNESCO katedrala i kameni gradovi nadomak Vodica — savršen izlet.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow reveal">Galerija</div><h2 class="reveal">Trenuci kod Dovodja.</h2></div>
+    </div>
+    <div class="gal">
+      <a class="tall reveal"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80" alt="Terasa pansiona"/></a>
+      <a class="wide reveal"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80" alt="Konoba ambijent"/></a>
+      <a class="reveal"><img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=80" alt="Soba detalj"/></a>
+      <a class="reveal"><img src="https://images.unsplash.com/photo-1528823872057-9c018a7a7553?auto=format&fit=crop&w=900&q=80" alt="Dalmatinsko jelo"/></a>
+      <a class="wide reveal"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="More i plaža"/></a>
+      <a class="tall reveal"><img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=900&q=80" alt="Apartman interijer"/></a>
+      <a class="reveal"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80" alt="Roštilj specijaliteti"/></a>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="pad" id="kontakt" style="background:var(--linen-2);border-top:1px solid var(--line)">
+  <div class="wrap loc">
+    <div>
+      <div class="eyebrow reveal">Lokacija i kontakt</div>
+      <h2 class="reveal">Nađite nas u Vodicama.</h2>
+      <div class="info">
+        <div class="row reveal"><div class="k">Adresa</div><div class="v">Pansion Dovodja, Vodice, Šibensko-kninska županija, Hrvatska</div></div>
+        <div class="row reveal"><div class="k">E-mail</div><div class="v">info@pansiondovodja.com</div></div>
+        <div class="row reveal"><div class="k">Web</div><div class="v">pansiondovodja.com</div></div>
+        <div class="row reveal"><div class="k">Sezona</div><div class="v">Otvoreno travanj – listopad · doručak i polupansion</div></div>
+        <div class="row reveal"><div class="k">Gosti</div><div class="v">Govorimo hrvatski, njemački, engleski i ponešto češki</div></div>
+      </div>
+      <a class="btn btn-solid reveal" style="margin-top:30px" href="#" onclick="openPanel(event)">Pošaljite upit</a>
+    </div>
+    <div class="mapwrap reveal">
+      <iframe src="https://maps.google.com/maps?q=Pansion+Dovodja+Vodice&output=embed" loading="lazy" title="Karta — Pansion Dovodja Vodice"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand-f">Dovodja</div>
+        <p>Obiteljski pansion i domaća konoba u Vodicama. Topli dom uz Jadran, otkad pamtimo.</p>
+      </div>
+      <div>
+        <h5>Pansion</h5>
+        <a href="#smjestaj">Sobe i apartmani</a>
+        <a href="#obitelj">Obitelj Dovodja</a>
+        <a href="#konoba">Konoba</a>
+        <a href="#vodice">Vodice</a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:info@pansiondovodja.com">info@pansiondovodja.com</a>
+        <a href="#" onclick="openPanel(event)">Pošalji upit</a>
+        <a href="#smjestaj">Rezerviraj</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Pansion Dovodja · Vodice, Hrvatska</span>
+      <span>Obiteljski vođeno · s ljubavlju prema Jadranu</span>
+    </div>
+  </div>
+</footer>
+
+<!-- mobile booking bar -->
+<div class="mbar">
+  <a class="btn btn-ghost" style="border-color:var(--line);color:var(--ink)" href="#" onclick="openPanel(event)">Upit</a>
+  <a class="btn btn-solid" href="#smjestaj">Rezerviraj</a>
+</div>
+
+<!-- ENQUIRY PANEL -->
+<div class="panel-bg" id="panelBg" onclick="closePanel()"></div>
+<aside class="panel" id="panel" aria-hidden="true">
+  <button class="x" onclick="closePanel()" aria-label="Zatvori">&times;</button>
+  <h3>Upit za boravak</h3>
+  <p class="sub">Javite nam termin i broj gostiju — odgovaramo osobno i brzo, na vašem jeziku.</p>
+  <form onsubmit="event.preventDefault();this.querySelector('.btn-solid').textContent='Hvala! Javljamo se uskoro.'">
+    <div class="field"><label>Ime i prezime</label><input type="text" required placeholder="Vaše ime" /></div>
+    <div class="field"><label>E-mail</label><input type="email" required placeholder="vas@email.com" /></div>
+    <div class="field"><label>Dolazak – odlazak</label><input type="text" placeholder="npr. 12.07. – 19.07." /></div>
+    <div class="field"><label>Smještaj</label>
+      <select><option>Soba Maslina</option><option>Soba Lavanda</option><option>Apartman Marina</option><option>Apartman Palma</option><option>Soba Mandula</option><option>Nisam siguran/na</option></select>
+    </div>
+    <div class="field"><label>Broj gostiju</label><input type="text" placeholder="npr. 2 odrasla + 1 dijete" /></div>
+    <div class="field"><label>Poruka</label><textarea rows="3" placeholder="Polupansion, parking, posebne želje…"></textarea></div>
+    <button type="submit" class="btn btn-solid">Pošalji upit</button>
+  </form>
+</aside>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* preloader */
+window.addEventListener('load',()=>{
+  if(reduced){document.getElementById('pre').classList.add('done');return;}
+  const pn=document.querySelector('#pre .pn'), ps=document.querySelector('#pre .ps');
+  gsap.to(pn,{opacity:1,y:0,duration:.9,ease:'power3.out'});
+  gsap.to(ps,{opacity:.9,duration:.9,delay:.35});
+  setTimeout(()=>document.getElementById('pre').classList.add('done'),1200);
+});
+
+/* Lenis smooth scroll */
+let lenis;
+if(!reduced){
+  lenis = new Lenis({lerp:0.2, wheelMultiplier:1, smoothWheel:true, syncTouch:false});
+  function raf(t){lenis.raf(t);requestAnimationFrame(raf);}
+  requestAnimationFrame(raf);
+}
+
+/* header scroll state */
+const header=document.getElementById('header');
+const onScroll=y=>{header.classList.toggle('scrolled',(y||window.scrollY)>60);};
+if(lenis){lenis.on('scroll',e=>onScroll(e.scroll));} else {window.addEventListener('scroll',()=>onScroll());}
+onScroll(0);
+
+/* anchor smooth scroll via lenis */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');
+    if(id.length>1){const el=document.querySelector(id);if(el){e.preventDefault();
+      if(lenis)lenis.scrollTo(el,{offset:-70});else el.scrollIntoView({behavior:'smooth'});
+      document.querySelector('.navlinks').classList.remove('mob');
+    }}
+  });
+});
+
+/* GSAP reveals */
+if(!reduced){
+  gsap.registerPlugin(ScrollTrigger);
+  if(lenis)lenis.on('scroll',ScrollTrigger.update);
+  gsap.ticker.add(t=>{ if(lenis)lenis.raf(t*1000); });
+  gsap.ticker.lagSmoothing(0);
+
+  gsap.utils.toArray('.reveal').forEach(el=>{
+    gsap.to(el,{opacity:1,y:0,duration:1,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 88%'}});
+  });
+  gsap.utils.toArray('.clip').forEach(el=>{
+    gsap.to(el,{clipPath:'inset(0 0 0% 0)',duration:1.2,ease:'power3.inOut',
+      scrollTrigger:{trigger:el,start:'top 85%'}});
+  });
+  /* hero parallax */
+  gsap.to('#heroImg',{yPercent:18,ease:'none',
+    scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+}else{
+  document.querySelectorAll('.reveal').forEach(e=>{e.style.opacity=1;e.style.transform='none';});
+}
+
+/* rooms swiper */
+new Swiper('#roomSwiper',{
+  slidesPerView:1.1,spaceBetween:20,grabCursor:true,
+  navigation:{nextEl:'#rNext',prevEl:'#rPrev'},
+  breakpoints:{640:{slidesPerView:2,spaceBetween:24},1000:{slidesPerView:3,spaceBetween:28}}
+});
+/* swiper needs navigation module from bundle */
+import_nav();
+function import_nav(){
+  const sw=document.querySelector('#roomSwiper').swiper;
+  document.getElementById('rNext').addEventListener('click',()=>sw.slideNext());
+  document.getElementById('rPrev').addEventListener('click',()=>sw.slidePrev());
+}
+
+/* enquiry panel */
+function openPanel(e){if(e)e.preventDefault();document.getElementById('panel').classList.add('open');document.getElementById('panelBg').classList.add('open');document.getElementById('panel').setAttribute('aria-hidden','false');}
+function closePanel(){document.getElementById('panel').classList.remove('open');document.getElementById('panelBg').classList.remove('open');document.getElementById('panel').setAttribute('aria-hidden','true');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel();});
+
+/* custom cursor (hover:hover only) */
+if(window.matchMedia('(hover:hover)').matches){
+  const c=document.querySelector('.cursor');
+  window.addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';});
+  document.querySelectorAll('a,button,.roomcard,.todo,.gal a').forEach(el=>{
+    el.addEventListener('mouseenter',()=>c.classList.add('big'));
+    el.addEventListener('mouseleave',()=>c.classList.remove('big'));
+  });
+}
+</script>
+</body>
+</html>
